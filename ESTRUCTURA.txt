@@ -1,0 +1,483 @@
+sistema-hospitalario-arquitectura/
+├── .github
+│   └── workflows
+│       └── README.md
+├── apps
+│   ├── backend
+│   │   ├── src
+│   │   │   ├── common
+│   │   │   │   ├── constants
+│   │   │   │   │   └── roles.constants.ts
+│   │   │   │   ├── decorators
+│   │   │   │   │   ├── current-user.decorator.ts
+│   │   │   │   │   └── roles.decorator.ts
+│   │   │   │   ├── enums
+│   │   │   │   │   └── user-role.enum.ts
+│   │   │   │   ├── filters
+│   │   │   │   │   └── http-exception.filter.ts
+│   │   │   │   ├── guards
+│   │   │   │   │   ├── auth.guard.ts
+│   │   │   │   │   └── roles.guard.ts
+│   │   │   │   ├── interceptors
+│   │   │   │   │   ├── audit.interceptor.ts
+│   │   │   │   │   └── logging.interceptor.ts
+│   │   │   │   ├── interfaces
+│   │   │   │   │   └── authenticated-user.interface.ts
+│   │   │   │   └── pipes
+│   │   │   │       └── validation.pipe.ts
+│   │   │   ├── config
+│   │   │   │   ├── app.config.ts
+│   │   │   │   ├── database.config.ts
+│   │   │   │   └── security.config.ts
+│   │   │   ├── infrastructure
+│   │   │   │   ├── database
+│   │   │   │   │   ├── migrations
+│   │   │   │   │   │   └── .gitkeep
+│   │   │   │   │   ├── seeds
+│   │   │   │   │   │   └── .gitkeep
+│   │   │   │   │   └── database.module.ts
+│   │   │   │   ├── external-services
+│   │   │   │   │   └── insurance.adapter.ts
+│   │   │   │   ├── logging
+│   │   │   │   │   └── logger.service.ts
+│   │   │   │   └── messaging
+│   │   │   │       └── notification.gateway.ts
+│   │   │   ├── modules
+│   │   │   │   ├── appointments
+│   │   │   │   │   ├── appointment.entity.ts
+│   │   │   │   │   ├── appointment.repository.interface.ts
+│   │   │   │   │   ├── appointment.repository.ts
+│   │   │   │   │   ├── appointments.controller.ts
+│   │   │   │   │   ├── appointments.module.ts
+│   │   │   │   │   ├── appointments.service.ts
+│   │   │   │   │   ├── create-appointment.dto.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── reschedule-appointment.dto.ts
+│   │   │   │   ├── audit
+│   │   │   │   │   ├── audit-event.entity.ts
+│   │   │   │   │   ├── audit.controller.ts
+│   │   │   │   │   ├── audit.module.ts
+│   │   │   │   │   ├── audit.repository.interface.ts
+│   │   │   │   │   ├── audit.repository.ts
+│   │   │   │   │   ├── audit.service.ts
+│   │   │   │   │   └── README.md
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── auth.controller.ts
+│   │   │   │   │   ├── auth.module.ts
+│   │   │   │   │   ├── auth.repository.interface.ts
+│   │   │   │   │   ├── auth.service.ts
+│   │   │   │   │   ├── jwt.adapter.ts
+│   │   │   │   │   ├── login.dto.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── refresh-token.entity.ts
+│   │   │   │   ├── billing
+│   │   │   │   │   ├── billing.controller.ts
+│   │   │   │   │   ├── billing.module.ts
+│   │   │   │   │   ├── billing.repository.interface.ts
+│   │   │   │   │   ├── billing.repository.ts
+│   │   │   │   │   ├── billing.service.ts
+│   │   │   │   │   ├── create-invoice.dto.ts
+│   │   │   │   │   ├── invoice-item.entity.ts
+│   │   │   │   │   ├── invoice.entity.ts
+│   │   │   │   │   ├── payment.entity.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── register-payment.dto.ts
+│   │   │   │   ├── consultations
+│   │   │   │   │   ├── consultation.entity.ts
+│   │   │   │   │   ├── consultation.repository.interface.ts
+│   │   │   │   │   ├── consultation.repository.ts
+│   │   │   │   │   ├── consultations.controller.ts
+│   │   │   │   │   ├── consultations.module.ts
+│   │   │   │   │   ├── consultations.service.ts
+│   │   │   │   │   ├── create-consultation.dto.ts
+│   │   │   │   │   ├── diagnosis.entity.ts
+│   │   │   │   │   └── README.md
+│   │   │   │   ├── hospitalizations
+│   │   │   │   │   ├── admit-patient.dto.ts
+│   │   │   │   │   ├── bed.entity.ts
+│   │   │   │   │   ├── discharge-patient.dto.ts
+│   │   │   │   │   ├── hospitalization.entity.ts
+│   │   │   │   │   ├── hospitalization.repository.interface.ts
+│   │   │   │   │   ├── hospitalization.repository.ts
+│   │   │   │   │   ├── hospitalizations.controller.ts
+│   │   │   │   │   ├── hospitalizations.module.ts
+│   │   │   │   │   ├── hospitalizations.service.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── room.entity.ts
+│   │   │   │   ├── laboratory
+│   │   │   │   │   ├── create-lab-request.dto.ts
+│   │   │   │   │   ├── lab-request.entity.ts
+│   │   │   │   │   ├── lab-result.entity.ts
+│   │   │   │   │   ├── laboratory.controller.ts
+│   │   │   │   │   ├── laboratory.module.ts
+│   │   │   │   │   ├── laboratory.repository.interface.ts
+│   │   │   │   │   ├── laboratory.repository.ts
+│   │   │   │   │   ├── laboratory.service.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── register-lab-result.dto.ts
+│   │   │   │   ├── medical-records
+│   │   │   │   │   ├── medical-record.entity.ts
+│   │   │   │   │   ├── medical-record.repository.interface.ts
+│   │   │   │   │   ├── medical-record.repository.ts
+│   │   │   │   │   ├── medical-records.controller.ts
+│   │   │   │   │   ├── medical-records.module.ts
+│   │   │   │   │   ├── medical-records.service.ts
+│   │   │   │   │   └── README.md
+│   │   │   │   ├── notifications
+│   │   │   │   │   ├── notification.entity.ts
+│   │   │   │   │   ├── notification.repository.interface.ts
+│   │   │   │   │   ├── notification.repository.ts
+│   │   │   │   │   ├── notifications.controller.ts
+│   │   │   │   │   ├── notifications.module.ts
+│   │   │   │   │   ├── notifications.service.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── send-notification.dto.ts
+│   │   │   │   ├── nursing
+│   │   │   │   │   ├── nursing-note.entity.ts
+│   │   │   │   │   ├── nursing.controller.ts
+│   │   │   │   │   ├── nursing.module.ts
+│   │   │   │   │   ├── nursing.repository.interface.ts
+│   │   │   │   │   ├── nursing.repository.ts
+│   │   │   │   │   ├── nursing.service.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── register-vital-signs.dto.ts
+│   │   │   │   │   └── vital-sign.entity.ts
+│   │   │   │   ├── patients
+│   │   │   │   │   ├── create-patient.dto.ts
+│   │   │   │   │   ├── patient.entity.ts
+│   │   │   │   │   ├── patient.repository.interface.ts
+│   │   │   │   │   ├── patient.repository.ts
+│   │   │   │   │   ├── patients.controller.ts
+│   │   │   │   │   ├── patients.module.ts
+│   │   │   │   │   ├── patients.service.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── update-patient.dto.ts
+│   │   │   │   ├── pharmacy
+│   │   │   │   │   ├── create-prescription.dto.ts
+│   │   │   │   │   ├── dispense-prescription.dto.ts
+│   │   │   │   │   ├── medicine.entity.ts
+│   │   │   │   │   ├── pharmacy-stock.entity.ts
+│   │   │   │   │   ├── pharmacy.controller.ts
+│   │   │   │   │   ├── pharmacy.module.ts
+│   │   │   │   │   ├── pharmacy.repository.interface.ts
+│   │   │   │   │   ├── pharmacy.repository.ts
+│   │   │   │   │   ├── pharmacy.service.ts
+│   │   │   │   │   ├── prescription-item.entity.ts
+│   │   │   │   │   ├── prescription.entity.ts
+│   │   │   │   │   └── README.md
+│   │   │   │   ├── reports
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── report-query.dto.ts
+│   │   │   │   │   ├── reports.controller.ts
+│   │   │   │   │   ├── reports.module.ts
+│   │   │   │   │   └── reports.service.ts
+│   │   │   │   ├── roles
+│   │   │   │   │   ├── permission.entity.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── role.entity.ts
+│   │   │   │   │   ├── role.repository.interface.ts
+│   │   │   │   │   ├── role.repository.ts
+│   │   │   │   │   ├── roles.controller.ts
+│   │   │   │   │   ├── roles.module.ts
+│   │   │   │   │   └── roles.service.ts
+│   │   │   │   ├── users
+│   │   │   │   │   ├── create-user.dto.ts
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── update-user.dto.ts
+│   │   │   │   │   ├── user.entity.ts
+│   │   │   │   │   ├── user.repository.interface.ts
+│   │   │   │   │   ├── user.repository.ts
+│   │   │   │   │   ├── users.controller.ts
+│   │   │   │   │   ├── users.module.ts
+│   │   │   │   │   └── users.service.ts
+│   │   │   │   └── README.md
+│   │   │   ├── app.module.ts
+│   │   │   └── main.ts
+│   │   ├── test
+│   │   │   ├── e2e
+│   │   │   │   └── .gitkeep
+│   │   │   ├── integration
+│   │   │   │   └── .gitkeep
+│   │   │   └── unit
+│   │   │       └── .gitkeep
+│   │   ├── nest-cli.json
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   └── tsconfig.json
+│   └── frontend
+│       ├── public
+│       │   └── .gitkeep
+│       ├── src
+│       │   ├── app
+│       │   │   ├── (auth)
+│       │   │   │   ├── forgot-password
+│       │   │   │   │   └── page.tsx
+│       │   │   │   └── login
+│       │   │   │       └── page.tsx
+│       │   │   ├── (dashboard)
+│       │   │   │   ├── administration
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── appointments
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── billing
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── consultations
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── dashboard
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── hospitalizations
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── laboratory
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── medical-records
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── patients
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── pharmacy
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── reports
+│       │   │   │   │   └── page.tsx
+│       │   │   │   └── layout.tsx
+│       │   │   ├── error.tsx
+│       │   │   ├── layout.tsx
+│       │   │   ├── loading.tsx
+│       │   │   ├── not-found.tsx
+│       │   │   └── page.tsx
+│       │   ├── core
+│       │   │   ├── api
+│       │   │   │   ├── api-endpoints.ts
+│       │   │   │   └── http-client.ts
+│       │   │   ├── auth
+│       │   │   │   ├── auth-context.tsx
+│       │   │   │   └── auth-guard.tsx
+│       │   │   └── config
+│       │   │       └── env.ts
+│       │   ├── features
+│       │   │   ├── appointments
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── audit
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── auth
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── billing
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── consultations
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── hospitalizations
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── laboratory
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── medical-records
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── notifications
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── nursing
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── patients
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── pharmacy
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── reports
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   ├── users
+│       │   │   │   ├── api
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── components
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── hooks
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── types
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── validations
+│       │   │   │   │   └── .gitkeep
+│       │   │   │   ├── index.ts
+│       │   │   │   └── README.md
+│       │   │   └── README.md
+│       │   ├── shared
+│       │   │   ├── components
+│       │   │   │   ├── feedback
+│       │   │   │   │   ├── alert.tsx
+│       │   │   │   │   └── loading-spinner.tsx
+│       │   │   │   ├── forms
+│       │   │   │   │   ├── select-field.tsx
+│       │   │   │   │   └── text-field.tsx
+│       │   │   │   ├── layout
+│       │   │   │   │   ├── app-header.tsx
+│       │   │   │   │   ├── app-sidebar.tsx
+│       │   │   │   │   └── page-container.tsx
+│       │   │   │   └── navigation
+│       │   │   │       └── breadcrumbs.tsx
+│       │   │   ├── types
+│       │   │   │   └── api-response.type.ts
+│       │   │   └── utils
+│       │   │       ├── date.util.ts
+│       │   │       └── permissions.util.ts
+│       │   └── styles
+│       │       └── globals.css
+│       ├── test
+│       │   ├── integration
+│       │   │   └── .gitkeep
+│       │   └── unit
+│       │       └── .gitkeep
+│       ├── next.config.mjs
+│       ├── package.json
+│       ├── README.md
+│       └── tsconfig.json
+├── docs
+│   ├── ARQUITECTURA.md
+│   ├── CASOS_DE_USO.md
+│   ├── DECISIONES_ARQUITECTONICAS.md
+│   ├── DIAGRAMAS.md
+│   ├── MODELO_DATOS.md
+│   ├── README.md
+│   └── SEGURIDAD.md
+├── scripts
+│   └── README.md
+├── .env.example
+├── .gitignore
+├── package.json
+├── README.md
+└── tsconfig.base.json

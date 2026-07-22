@@ -1,0 +1,6 @@
+{
+  "name": "@hospital/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Estructura arquitectónica del frontend Next.js sin implementación."
+}

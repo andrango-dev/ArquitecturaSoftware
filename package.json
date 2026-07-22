@@ -1,0 +1,10 @@
+{
+  "name": "sistema-hospitalario-arquitectura",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/backend",
+    "apps/frontend"
+  ],
+  "description": "Monorepo de arquitectura para un sistema hospitalario sin implementación funcional."
+}
