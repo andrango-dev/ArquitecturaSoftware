@@ -1,7 +1,6 @@
 # Sistema Hospitalario — Arquitectura Monorepo
 
 Este repositorio contiene únicamente la **arquitectura y estructura de archivos** de un sistema hospitalario.
-No incluye implementación funcional ni lógica de negocio programada.
 
 ## Tecnologías seleccionadas
 
